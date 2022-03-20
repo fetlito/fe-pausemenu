@@ -16,3 +16,20 @@ Citizen.CreateThread(function()
    Citizen.InvokeNative(GetHashKey("ADD_TEXT_ENTRY"),'PM_SCR_GAL', 'GALERY')
    Citizen.InvokeNative(GetHashKey("ADD_TEXT_ENTRY"),'PM_SCR_RPL', 'ROCKSTAR EDITOR')
 end)
+
+function SetHeading(slot, str)
+   BeginScaleformMovieMethodOnFrontendHeader('SET_HEADING_DETAILS_CUSTOM')
+   ScaleformMovieMethodAddParamInt(slot)
+   ScaleformMovieMethodAddParamTextureNameString(str)
+   EndScaleformMovieMethod()
+end
+Citizen.CreateThread(function()
+   while true do
+       if GetPauseMenuState() > 0 then
+           SetHeading(0, 'PlayerName')
+           SetHeading(1, 'Developer')
+           SetHeading(2, 'Likes flowers')
+       end
+       Citizen.Wait(100)
+   end
+end)
