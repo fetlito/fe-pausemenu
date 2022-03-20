@@ -25,8 +25,26 @@ Citizen.CreateThread(function()
    Citizen.InvokeNative(GetHashKey("ADD_TEXT_ENTRY"),'PM_SCR_RPL', 'Rockstar Editor') #Rockstar editor
 end)
 ```
-
+### Details:
+```lua
+function SetHeading(slot, str)
+   BeginScaleformMovieMethodOnFrontendHeader('SET_HEADING_DETAILS_CUSTOM')
+   ScaleformMovieMethodAddParamInt(slot)
+   ScaleformMovieMethodAddParamTextureNameString(str)
+   EndScaleformMovieMethod()
+end
+Citizen.CreateThread(function()
+   while true do
+       if GetPauseMenuState() > 0 then
+           SetHeading(0, '~r~Text 1') # First line
+           SetHeading(1, '~b~Text 2') # Second line
+           SetHeading(2, '~o~Text 3') # Third line
+       end
+       Citizen.Wait(100)
+   end
+end)
+```
 ## Before
 ![](https://cdn.discordapp.com/attachments/954434394762936332/954849858039218176/unknown.png)
 ## After
-![](https://cdn.discordapp.com/attachments/954434394762936332/954850908334858240/unknown.png)
+![](https://cdn.discordapp.com/attachments/954434394762936332/955057144288399430/unknown.png)
